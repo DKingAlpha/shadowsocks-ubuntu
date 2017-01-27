@@ -18,7 +18,7 @@ $ Shadowsocks
 
 
 This is a fast-efficient shadowsocks local deployment solution on Ubuntu (14.04 tested)
-Approximately 80% Speed Up & 70% Delay Down than my experience of pure python-shadowsocks.
+Approximately 70% Speed Up & 80% Delay Down & 90% sslocal Stability Up than my experience of pure python-shadowsocks. (ye pain in the *)
 
 Mainly the improvement happened when ss-libev provided an ACL rules function so we can bypass unnecessary proxy requests and get out the hell of massive requests of py-ss
 
