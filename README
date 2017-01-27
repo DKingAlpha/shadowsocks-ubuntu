@@ -1,0 +1,28 @@
+#### Requirement:
+Ubuntu 14.04
+nothing else I think ?
+
+#### INSTALLATION:
+
+$ sudo -s
+# cd shadowsocks-ubuntu
+# ./Install.sh then follow instructions.
+
+....snip....
+
+$ Shadowsocks help
+$ Shadowsocks
+#### Speedy tripple tunnel on! ####
+
+
+
+
+This is a fast-efficient shadowsocks local deployment solution on Ubuntu (14.04 tested)
+Approximately 80% Speed Up & 70% Delay Down than my experience of pure python-shadowsocks.
+
+Mainly the improvement happened when ss-libev provided an ACL rules function so we can bypass unnecessary proxy requests and get out the hell of massive requests of py-ss
+
+Simply a similar implement as Shadowsocks-Android (but that uses tun2sock/vpn-if not simple polipo)
+
+This version of ss-libev and related modules is compiled and build under the instruction @https://github.com/shadowsocks/shadowsocks-libev. Appreciation!
+

@@ -1,0 +1,109 @@
+#!/bin/bash
+
+DIR="$(cd $(dirname $0) && pwd)"
+cd $DIR
+
+if [ `uname -p` != 'x86_64' ]; then
+    echo "Ubuntu/Debian 64bit required! Exiting..."
+    exit 1
+fi
+
+help()
+{
+	echo "
+Shadowsocks
+    A Fast Shadowsocks Deployment Solution on Ubuntu.
+    Shadowsocks-libev + ACL + PolipoProxy.
+
+
+    Usage:
+        Shadowsocks [run/start]     Run as default(/etc/shadowsocks-libev/config.json)
+        Shadowsocks stop            Stop Shadowsocks-related processes
+        Shadowsocks help/--help/-h  You are looking at it !
+        Shadowsocks config          Pop up gedit to configure config file  (need ROOT)
+        Shadowsocks setacl          Set an acl file to load(need ROOT) (default:bypass-lan-china)
+
+
+    Credits: Maintainers@
+        https://github.com/shadowsocks/shadowsocks/
+        https://github.com/shadowsocks/shadowsocks-libev/
+        https://www.irif.fr/~jch/software/polipo/
+
+"
+}
+
+
+stopss()
+{
+    killall ss-local polipo 2>/dev/null
+    echo "Shadowsocks related application has been Stopped"
+}
+
+
+runss()
+{
+    killall ss-local polipo 2>/dev/null
+    echo "Launching..."
+    acl=$(cat /etc/shadowsocks-libev/acl_selection)
+    /usr/bin/ss-local -c /etc/shadowsocks-libev/config.json --fast-open --acl /etc/shadowsocks-libev/acl_list/$acl  2>/dev/null >/dev/null &
+    /usr/bin/polipo -c /etc/polipo/config 2>/dev/null >/dev/null &
+    echo "
+    HTTP PROXY :  http://0.0.0.0:1080/
+    HTTPS PROXY :  http://0.0.0.0:1080/
+    Socks5 Proxy:  0.0.0.0:10805
+"
+
+}
+
+setacl()
+{
+    acllist=$(ls /etc/shadowsocks-libev/acl_list)
+    select s in $acllist; do
+        echo $s " selected"
+        sudo echo $s > /etc/shadowsocks-libev/acl_selection
+        break
+    done
+}
+
+
+
+## main
+
+if [ $# == 0 ]; then
+    runss
+    exit
+fi
+
+if [ $# == 1 ]; then
+    if [ $1 == 'help' ] || [ $1 == '--help' ] || [ $1 == '-h' ]; then
+        help
+        exit 0
+    fi
+
+    if [ $1 == 'run' ] || [ $1 == 'start' ]; then
+        runss
+        exit 0
+    fi
+
+    if [ $1 == 'stop' ]; then
+        stopss
+        exit 0
+    fi
+
+    if [ $1 == 'config' ]; then
+        sudo gedit /etc/shadowsocks-libev/config.json
+        sudo gedit /etc/polipo/config
+        exit 0
+    fi
+
+    if [ $1 == 'setacl' ]; then
+        setacl
+        exit 0
+    fi
+else
+    help
+    exit 1
+fi
+
+
+
