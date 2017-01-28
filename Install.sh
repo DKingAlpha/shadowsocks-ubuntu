@@ -48,8 +48,8 @@ echo "bypass-lan-china.acl" > /etc/shadowsocks-libev/acl_selection
 update-rc.d polipo disable >/dev/null 2>/dev/null
 
 chmod +x Shadowsocks
-rm /usr/bin/Shadwosocks 2>/dev/null
-ln -s $ssinstdir/Shadowsocks /usr/bin/Shadwosocks 2>/dev/null
+rm /usr/bin/Shadowsocks 2>/dev/null
+ln -s $ssinstdir/Shadowsocks /usr/bin/Shadowsocks 2>/dev/null
 
 
 # avoid duplicated installation
