@@ -35,6 +35,7 @@ read junk
 
 echo "The SS config file looks like:"
 cat config/ss.conf
+read -p "Hit Enter to continue" junk
 echo "Hit Enter to begin automitically installation."
 
 dpkg -R -i debfiles
@@ -61,11 +62,11 @@ echo "
 alias Shadowsocks-setproxy='source /etc/shadowsocks-libev/envproxy/set'
 alias Shadowsocks-unsetproxy='source /etc/shadowsocks-libev/envproxy/unset'" >> /etc/bash.bashrc 
 
-mkdir /etc/shadowsocks-libev/envproxy
+mkdir /etc/shadowsocks-libev/envproxy 2>/dev/null
 echo "export HTTP_PROXY=http://127.0.0.1:1080
-export http_proxy=$HTTP_PROXY
-export HTTPS_PROXY=$HTTP_PROXY
-export https_proxy=$HTTP_PROXY
+export http_proxy=\$HTTP_PROXY
+export HTTPS_PROXY=\$HTTP_PROXY
+export https_proxy=\$HTTP_PROXY
 " > /etc/shadowsocks-libev/envproxy/set
 echo "unset HTTP_PROXY http_proxy HTTPS_PROXY https_proxy" > /etc/shadowsocks-libev/envproxy/unset
 
