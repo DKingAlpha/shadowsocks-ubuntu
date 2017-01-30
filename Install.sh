@@ -53,13 +53,13 @@ ln -s $ssinstdir/Shadowsocks /usr/bin/Shadowsocks 2>/dev/null
 
 
 # avoid duplicated installation
-sed -i "s/alias Shadowsocks-setproxy='source > \/etc\/shadowsocks-libev\/envproxy\/set'//g" /etc/bash.bashrc 
-sed -i "s/alias Shadowsocks-unsetproxy='source > \/etc\/shadowsocks-libev\/envproxy\/unset'//g" /etc/bash.bashrc 
+sed -i "s/alias Shadowsocks-setproxy='source \/etc\/shadowsocks-libev\/envproxy\/set'//g" /etc/bash.bashrc 
+sed -i "s/alias Shadowsocks-unsetproxy='source \/etc\/shadowsocks-libev\/envproxy\/unset'//g" /etc/bash.bashrc 
 
 # install alias to setup proxy
 echo "
-alias Shadowsocks-setproxy='source > /etc/shadowsocks-libev/envproxy/set'
-alias Shadowsocks-unsetproxy='source > /etc/shadowsocks-libev/envproxy/unset'" >> /etc/bash.bashrc 
+alias Shadowsocks-setproxy='source /etc/shadowsocks-libev/envproxy/set'
+alias Shadowsocks-unsetproxy='source /etc/shadowsocks-libev/envproxy/unset'" >> /etc/bash.bashrc 
 
 mkdir /etc/shadowsocks-libev/envproxy
 echo "export HTTP_PROXY=http://127.0.0.1:1080
