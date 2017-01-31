@@ -38,13 +38,20 @@ cat config/ss.conf
 read -p "Hit Enter to continue" junk
 echo "Hit Enter to begin automitically installation."
 
-dpkg -R -i debfiles
+pushd libsodium
+libsodium/install_libsodium.sh
+popd
 
-mv /etc/polipo/config /etc/polipo/config.bak
-mv /etc/shadowsocks-libev/config.json /etc/shadowsocks-libev/config.json.bak
+dpkg -R -i debfiles
+apt-get -f install
+
+mkdir -p /etc/shadowsocks-libev
+mkdir -p /etc/polipo/
+mv /etc/polipo/config /etc/polipo/config.bak 2>/dev/null
+mv /etc/shadowsocks-libev/config.json /etc/shadowsocks-libev/config.json.bak 2>/dev/null
 cp config/polipo.conf /etc/polipo/config
 cp config/ss.conf /etc/shadowsocks-libev/config.json
-cp -r acl_list /etc/shadowsocks-libev/
+cp -r acl_list /etc/shadowsocks-libev/acl_list
 echo "bypass-lan-china.acl" > /etc/shadowsocks-libev/acl_selection
 update-rc.d polipo disable >/dev/null 2>/dev/null
 
