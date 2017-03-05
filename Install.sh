@@ -39,7 +39,7 @@ read -p "Hit Enter to continue" junk
 echo "Hit Enter to begin automitically installation."
 
 pushd libsodium
-libsodium/install_libsodium.sh
+./install_libsodium.sh
 popd
 
 dpkg -R -i debfiles
