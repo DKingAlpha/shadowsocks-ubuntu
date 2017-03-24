@@ -1,6 +1,6 @@
 #### Requirement:
-Ubuntu 14.04
-nothing else I think ?
+Ubuntu 14.04/16.04
+* In Ubuntu 16.04, you need to add /usr/local/lib to /etc/ld.so.conf
 
 #### INSTALLATION:
 
@@ -17,7 +17,7 @@ $ Shadowsocks
 
 
 
-This is a fast-efficient shadowsocks local deployment solution on Ubuntu (14.04 tested)
+This is a fast-efficient shadowsocks local deployment solution on Ubuntu
 Approximately 70% Speed Up & 80% Delay Down & 90% sslocal Stability Up than my experience of pure python-shadowsocks. (ye pain in the *)
 
 Mainly the improvement happened when ss-libev provided an ACL rules function so we can bypass unnecessary proxy requests and get out the hell of massive requests of py-ss
