@@ -4,6 +4,6 @@
     "local_address":"127.0.0.1",
     "local_port":"10805",
     "password":"YOURPASSWORD",
-    "method":"aes-256-cfb",
+    "method":"YOURMETHOD",
     "timeout":500
 }

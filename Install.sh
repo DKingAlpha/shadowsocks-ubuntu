@@ -17,17 +17,17 @@ fi
 read -p "Shadowsocks Server IP   >" SS_IP
 read -p "Shadowsocks Server Port >" SS_PORT
 read -p "Shadowsocks Password    >" YOURPASSWORD
+read -p "Shadowsocks Method (aes-256-cfb, rc4-md5 or etc.)    >" YOURMETHOD
 
 cp config/ss.conf.tpl config/ss.conf
 sed -i "s/SS_IP/$SS_IP/g" config/ss.conf
 sed -i "s/SS_PORT/$SS_PORT/g" config/ss.conf
 sed -i "s/YOURPASSWORD/$YOURPASSWORD/g" config/ss.conf
+sed -i "s/YOURMETHOD/$YOURMETHOD/g" config/ss.conf
 
 
 
 echo "
-         Encrypting Method is set to 'aes-256-cfb' as default,
-         (If not right , please manually fix 'config/ss.conf' now ),
          Then hit ENTER key to continue.
 "
 read junk
